@@ -17089,12 +17089,40 @@
         ]
     }
 
-    var trails = {'Trail 1': trail1
+    //var trails = {'Trail 1': trail1
+  //  }
+
+    //L.geoJSON(trail1).addTo(mymap)
+
+    //
+    // create an operational layer that is empty for now
+    let mylayer = L.layerGroup().addTo( mymap )
+
+    /* 2 */
+    // fill that layer with data from a geojson file
+    jQuery.getJSON( "SteepleZones.geojson", function( json ){
+    L.geoJSON( json, {
+    onEachFeature: addMyData,
+    })
+    })
+
+    /* 3 */
+    // This function is run for every feature found in the geojson file. It adds the feature to the empty layer we created above
+    function addMyData( feature, layer ){
+    mylayer.addLayer( layer )
+    // some other code can go here, like adding a popup with layer.bindPopup("Hello")
     }
 
-    L.geoJSON(trail1).addTo(mymap)
-    L.control.layers(basemaps).addTo(mymap)
-    L.control.layers(trails).addTo(mymap)
+    /* 4 */
+    // These options will appear in the control box that users click to show and hide layers
+
+    let layerControl = {
+    "Trail1": mylayer, // an option to show or hide the layer you created from geojson
+    }
+
+/* 5 */
+  // Add the control component, a layer list with checkboxes for operational layers and radio buttons for basemaps
+    L.control.layers( basemaps, layerControl ).addTo( mymap )
 
   </script>
 
