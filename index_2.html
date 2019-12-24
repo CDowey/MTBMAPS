@@ -114,17 +114,22 @@
     var count = 0
 
     map.on('baselayerchange', function baselayername(e){
-      if(map.hasLayer(Stamen_Toner) == true){
-          var count = 1
-      }
-      if(map.hasLayer(Thunderforest_Landscape) == true){
-          count = 10
-      }
-      // if(map.hasLayer(Thunderforest_Landscape) == true){
-      //     count = 10
-      // }
+      console.log(e)
     }
     );
+
+    // map.on('baselayerchange', function baselayername(e){
+    //   if(map.hasLayer(Stamen_Toner) == true){
+    //       var count = 1
+    //   }
+    //   if(map.hasLayer(Thunderforest_Landscape) == true){
+    //       count = 10
+    //   }
+    //   // if(map.hasLayer(Thunderforest_Landscape) == true){
+    //   //     count = 10
+    //   // }
+    // }
+    // );
 
     // Need to tie this to a trigger (on mouse click or layer on...)
 
