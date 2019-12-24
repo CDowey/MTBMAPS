@@ -113,8 +113,9 @@
     var myTable = document.getElementById('counter');
     var count = 0
 
-    map.on('baselayerchange', function baselayername(e){
-      console.log(e)
+    map.on('baselayerchange', function(layer, name){
+      console.log(layer)
+      console.log(name)
     }
     );
 
