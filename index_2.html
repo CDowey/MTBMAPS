@@ -26,15 +26,31 @@
     }
 
     #mapid {
-      width: 100%;
-      height: 100%;
+      width: 80%;
+      height: 80%;
     }
+
+    #counter {
+    table-layout: fixed;
+    width: 80%;
+    border: 1px solid green;
+    }
+
+
   </style>
 
 </HEAD>
 
 <BODY>
   <div id="mapid"></div>
+  </br>
+  <table id="counter">
+    <tr>
+      <td>Counter</td>
+      <td>45</td>
+    </tr>
+  </table>
+
   <script>
     // Create Map
 
@@ -56,7 +72,7 @@
       });
 
 
-    var basemaps = {
+    var baselayer = {
       'Stamen Basemap' : Stamen_Toner,
       'Outdoors Basemap' : Thunderforest_Landscape
     }
@@ -91,7 +107,33 @@
     }
 
 
-    L.control.layers(basemaps, layerControl).addTo(map)
+    L.control.layers(baselayer, layerControl).addTo(map)
+
+    // Update counter to reflect the number of layers on
+    var myTable = document.getElementById('counter');
+    var count = 0
+
+    map.on('baselayerchange', function baselayername(e){
+      if(map.hasLayer(Stamen_Toner) == true){
+          var count = 1
+      }
+      if(map.hasLayer(Thunderforest_Landscape) == true){
+          count = 10
+      }
+      // if(map.hasLayer(Thunderforest_Landscape) == true){
+      //     count = 10
+      // }
+    }
+    );
+
+    // Need to tie this to a trigger (on mouse click or layer on...)
+
+
+    // if(map.hasLayer(Thunderforest_Landscape) == true){
+    //     count = 10
+    // }
+
+    myTable.rows[0].cells[1].innerHTML = count;
 
   </script>
 
