@@ -31,12 +31,10 @@
     }
 
     #counter {
-    table-layout: fixed;
-    width: 80%;
-    border: 1px solid green;
+      table-layout: fixed;
+      width: 80%;
+      border: 1px solid green;
     }
-
-
   </style>
 
 </HEAD>
@@ -46,8 +44,8 @@
   </br>
   <table id="counter">
     <tr>
-      <td>Counter</td>
-      <td>45</td>
+      <td>Number of Basemap Toggles</td>
+      <td></td>
     </tr>
   </table>
 
@@ -66,15 +64,15 @@
     }).addTo(map)
 
     var Thunderforest_Landscape = L.tileLayer('https://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey={apikey}', {
-    attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    apikey: 'eb1937f239cf4794a8edeb744d50d083',
+      attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      apikey: 'eb1937f239cf4794a8edeb744d50d083',
       maxZoom: 22
-      });
+    });
 
 
     var baselayer = {
-      'Stamen Basemap' : Stamen_Toner,
-      'Outdoors Basemap' : Thunderforest_Landscape
+      'Stamen Basemap': Stamen_Toner,
+      'Outdoors Basemap': Thunderforest_Landscape
     }
 
     // create an operational layer that is empty for now
@@ -82,9 +80,9 @@
     let trail2 = L.layerGroup().addTo(map)
 
     var myStyle = {
-    "color": "#ff7800",
-    "weight": 2,
-    "opacity": 0.65
+      "color": "#ff7800",
+      "weight": 2,
+      "opacity": 0.65
     };
 
     // Read in geoJson from file and add to layerGroup
@@ -92,18 +90,18 @@
     trail1.addLayer(steeple)
 
     var Spruce = new L.GeoJSON.AJAX("Spruce.geojson", {
-      onEachFeature: function (feature, layer) {
+      onEachFeature: function(feature, layer) {
         layer.bindPopup(feature.properties.name);
       },
       style: myStyle
-  });
+    });
 
     trail2.addLayer(Spruce)
 
     // Create layerControl for layerGroups
     let layerControl = {
-        "Steeple Ski": trail1,
-        "Spruce": trail2 // an option to show or hide the layer you created from geojson
+      "Steeple Ski": trail1,
+      "Spruce": trail2 // an option to show or hide the layer you created from geojson
     }
 
 
@@ -112,13 +110,15 @@
     // Update counter to reflect the number of layers on
     var myTable = document.getElementById('counter');
     var count = 0
+    myTable.rows[0].cells[1].innerHTML = count;
 
-    map.on('baselayerchange', function(layer, name){
-      console.log(layer)
-      console.log(name)
-    }
-    );
+    map.on('baselayerchange', function(layer, name) {
+      count++;
+      myTable.rows[0].cells[1].innerHTML = count;
+    });
 
+
+// could use these ifs to count different points for each basemap
     // map.on('baselayerchange', function baselayername(e){
     //   if(map.hasLayer(Stamen_Toner) == true){
     //       var count = 1
@@ -139,7 +139,6 @@
     //     count = 10
     // }
 
-    myTable.rows[0].cells[1].innerHTML = count;
 
   </script>
 
