@@ -76,3 +76,11 @@ map.fitBounds(steeple.getBounds(),{
 });
 
 // Set up buttons to toggle Basemaps
+function BasemapOff() {
+  if(!toggle) {
+    map.removeLayer(data1);
+  } else {
+    map.addLayer(data1);
+  }
+  toggle = !toggle;
+}
