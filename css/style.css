@@ -1,0 +1,46 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#mapid {
+  width: 70%;
+  height: 70%;
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  box-shadow: 0px 1px 7px grey;
+
+}
+
+#counter {
+  position: fixed;
+  top: 81%;
+  left: 10%;
+  table-layout: fixed;
+  width: 80%;
+  border: 1px solid green;
+}
+.leaflet-container {
+  background-color: #fff;
+  outline: 2px;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button:hover {
+  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 17px 20px 0 rgba(0,0,0,0.19);
+}
