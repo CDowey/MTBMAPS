@@ -25,24 +25,31 @@
 </HEAD>
 
 <BODY>
-  <div id="mapid"></div>
-  </br>
-  <table id="counter">
+  <div id='count'></div>
+
+  <table id="options">
     <tr>
-      <td>Number of Basemap Toggles</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><button type="button" onclick="BasemapOff();" class = "button" id="nobasemap">No Basemap</button></td>
-      <td><button type="button" class = "button" id="stamen">Minimal</button></td>
-      <td><button type="button" class = "button" id="nobasemap">Outdoors</button></td>
+      <td><button type="button" class = "opt_button" id="option1">Minimal</button></td>
+      <td><button type="button" class = "opt_button" id="option2">Outdoors</button></td>
+      <td><button type="button" class = "opt_button" id="option3">Minimal</button></td>
+      <td><button type="button" class = "opt_button" id="option4">Minimal</button></td>
+      <td><button type="button" class = "opt_button" id="option5">Minimal</button></td>
     </tr>
   </table>
 
+  <div id="mapid"></div>
+  </br>
+  <table id="basemaptoggle">
+    <tr>
+      <td><button type="button" onclick="StamenBase();" class = "button" id="stamen">Minimal</button></td>
+      <td><button type="button" onclick="OutdoorBase();" class = "button" id="nobasemap">Outdoors</button></td>
+    </tr>
+  </table>
 
-
-  <!-- Add leaflet JS for map -->
+<!-- Add leaflet JS for map -->
+<!--  <script type="text/javascript" src="js/script.js"></script> -->
   <script type="text/javascript" src="js/script.js"></script>
+
 
 </BODY>
 

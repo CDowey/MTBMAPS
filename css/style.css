@@ -10,19 +10,24 @@ body {
   position:fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -50%);
   box-shadow: 0px 1px 7px grey;
-
 }
 
-#counter {
+#basemaptoggle {
   position: fixed;
-  top: 81%;
+  top: 87%;
   left: 10%;
   table-layout: fixed;
   width: 80%;
-  border: 1px solid green;
+  border: 0px solid green;
 }
+
+#options {
+  margin: auto;
+  align-content: center;
+}
+
 .leaflet-container {
   background-color: #fff;
   outline: 2px;
@@ -42,5 +47,23 @@ body {
 }
 
 .button:hover {
+  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 17px 20px 0 rgba(0,0,0,0.19);
+}
+
+.opt_button {
+  white-space: nowrap;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 11px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.opt_button:hover {
   box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 17px 20px 0 rgba(0,0,0,0.19);
 }
