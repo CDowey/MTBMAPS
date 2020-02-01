@@ -12,31 +12,44 @@ var trails = [
   'Sheep Thrills',
   'Rogue One',
   "Callagy's",
-  'Flow'
+  'Flo'
 ]
 
-document.getElementById("option1").innerHTML = trails[0];
-// Need a function to take the one correct answer
-// Grab four other options and then randomize order and assign to buttons
-function getRandomSubarray(arr, size) {
-    var shuffled = arr.slice(0), i = arr.length, temp, index;
-    while (i--) {
-        index = Math.floor((i + 1) * Math.random());
-        temp = shuffled[index];
-        shuffled[index] = shuffled[i];
-        shuffled[i] = temp;
-    }
-    return shuffled.slice(0, size);
+// Randomize order of list and select first item (after a correct guess move to the next item)
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 
-var trail_sel = getRandomSubarray(trails, 5);
+var trail_rand = shuffle(trails)
 
+var current_trail = trail_rand.slice(0,1)
 
-document.getElementById("option1").innerHTML = trail_sel[0];
-document.getElementById("option2").innerHTML = trail_sel[1];
-document.getElementById("option3").innerHTML = trail_sel[2];
-document.getElementById("option4").innerHTML = trail_sel[3];
-document.getElementById("option5").innerHTML = trail_sel[4];
+var remaining_trail_options = trail_rand.filter(function(value, index, arr){
+    return value != current_trail;
+}).slice(0,4);
+
+trail_options = shuffle(current_trail.concat(remaining_trail_options));
+
+document.getElementById("option1").innerHTML = trail_options[0];
+document.getElementById("option2").innerHTML = trail_options[1];
+document.getElementById("option3").innerHTML = trail_options[2];
+document.getElementById("option4").innerHTML = trail_options[3];
+document.getElementById("option5").innerHTML = trail_options[4];
 
 
 // Create Map
@@ -77,7 +90,7 @@ var baselayer = {
 };
 
 // create an operational layer that is empty for now
-var trail1 = new L.featureGroup().addTo(map);
+var trailGroup = new L.featureGroup().addTo(map);
 
 // Read in geoJson from file and add to layerGroup
 var lineStyle = {
@@ -94,11 +107,11 @@ steeple.on('data:loaded', function() {
     map.fitBounds(steeple.getBounds())
   });
 
-steeple.addTo(trail1);
+steeple.addTo(trailGroup);
 
 // Create layerControl for layerGroups
 let layerControl = {
-  "Trail": trail1,
+  "Trail": trailGroup,
 //  "Spruce": trail2 // an option to show or hide the layer you created from geojson
 }
 
