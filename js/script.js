@@ -11,7 +11,7 @@ var trails = [
   'Evolution',
   'Sheep Thrills',
   'Rogue One',
-  "Callagy's",
+  "Callagys",
   'Flo'
 ]
 
@@ -38,6 +38,9 @@ function shuffle(array) {
 var trail_rand = shuffle(trails)
 
 var current_trail = trail_rand.slice(0,1)
+
+document.getElementById("currentTrail").innerHTML = "Trail Displayed = " + current_trail ;
+
 
 var remaining_trail_options = trail_rand.filter(function(value, index, arr){
     return value != current_trail;
@@ -99,15 +102,22 @@ var lineStyle = {
   "opacity": 0.65
 };
 
-var steeple = new L.GeoJSON.AJAX("data/Visceral.geojson", {
-  style : lineStyle
-});
+//var trail = new L.GeoJSON.AJAX("data/Visceral.geojson", {
+//  style : lineStyle
+//});
 
-steeple.on('data:loaded', function() {
-    map.fitBounds(steeple.getBounds())
-  });
+//trail.on('data:loaded', function() {
+//    map.fitBounds(steeple.getBounds())
+//  });
 
-steeple.addTo(trailGroup);
+// Use omnivore for displaying gpx files
+var trail = omnivore.gpx('data/' + current_trail + '.gpx')
+    .on('ready', function() {
+        style : lineStyle;   //not sure this is the right place for lineStyle
+        map.fitBounds(trail.getBounds()) //ideally there would be a bit more padding I think
+    })
+
+trail.addTo(trailGroup);
 
 // Create layerControl for layerGroups
 let layerControl = {

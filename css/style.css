@@ -26,6 +26,11 @@ body {
 #options {
   margin: auto;
   align-content: center;
+  float : left;
+}
+
+#currentTrail {
+  clear:left;
 }
 
 .leaflet-container {

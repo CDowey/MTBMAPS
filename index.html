@@ -18,6 +18,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
 
+  <!-- Add Leaflet Ominvore from https://docs.mapbox.com/mapbox.js/example/v1.0.0/omnivore-gpx/ for easy loading of gpx -->
+  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
+
   <!-- relative link to stylesheet -->
   <link rel="stylesheet" href="css/style.css"/>
 
@@ -46,10 +50,11 @@
     </tr>
   </table>
 
+  <div id='currentTrail'></div>
+
 <!-- Add leaflet JS for map -->
 <!--  <script type="text/javascript" src="js/script.js"></script> -->
-  <script type="text/javascript" src="js/script.js"></script>
-
+<script type="text/javascript" src="js/script.js"></script>
 
 </BODY>
 
