@@ -4,38 +4,54 @@ body {
   margin: 0;
 }
 
+#count {
+  margin-block-end : 0px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
 #mapid {
   width: 70%;
   height: 70%;
-  position:fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0px 1px 7px grey;
+  transform: translate(-50%, -60%);
+  box-shadow: 0px 1px 9px 0px #80808021;
 }
 
 #basemaptoggle {
   position: fixed;
-  top: 87%;
-  left: 10%;
+  align-content: center;
   table-layout: fixed;
-  width: 80%;
-  border: 0px solid green;
+  width: 70%;
+  border: 0px;
+  top: 91%;
+  left : 18%;
 }
 
 #options {
-  margin: auto;
+  position: fixed;
   align-content: center;
-}
+  width: 70%;
+  border: 0px;
+  top: 80%;
+  left : 16%;
 
+}
 
 .leaflet-container {
   background-color: #fff;
   outline: 2px;
 }
 
+.leaflet-container a {
+  color : #6d6d6da8
+}
+
 .button {
-  background-color: black;
+  background-color: #858a88;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -45,10 +61,15 @@ body {
   font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius : 8px;
 }
 
 .button:hover {
-  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 17px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.24), 0 3px 5px 0 rgba(0,0,0,0.19);
+}
+
+.button:focus {
+  outline: none;
 }
 
 .opt_button {
@@ -63,8 +84,17 @@ body {
   font-size: 11px;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius : 8px;
 }
 
 .opt_button:hover {
-  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 17px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.24), 0 3px 5px 0 rgba(0,0,0,0.19);
+}
+
+.opt_button:focus {
+  outline: none;
+}
+
+#ToggleText{
+  font-family: sans-serif;
 }

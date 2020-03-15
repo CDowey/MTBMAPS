@@ -29,7 +29,9 @@
 </HEAD>
 
 <BODY>
-  <div id='count'></div>
+  <h3 id='count'></h3>
+  </br>
+  <div id="mapid"></div>
 
   <table id="options">
     <tr>
@@ -41,14 +43,16 @@
     </tr>
   </table>
 
-  <div id="mapid"></div>
   </br>
+  
   <table id="basemaptoggle">
     <tr>
-      <td><button type="button" onclick="StamenBase();" class = "button" id="stamen">Minimal</button></td>
-      <td><button type="button" onclick="OutdoorBase();" class = "button" id="nobasemap">Outdoors</button></td>
+      <td id = 'ToggleText'>Toggle Basemaps:</td>
+      <td><button type="button" onclick="StamenBase();" class = "button" id="stamen">Minimal (-1)</button></td>
+      <td><button type="button" onclick="OutdoorBase();" class = "button" id="nobasemap">Outdoors (-3)</button></td>
     </tr>
   </table>
+
 
 <!-- Add leaflet JS for map -->
 <!--  <script type="text/javascript" src="js/script.js"></script> -->

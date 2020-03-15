@@ -1,9 +1,9 @@
 // Set counter
-var count = 11
-document.getElementById("count").innerHTML = "Points remaining: " + count;
+let count = 10
+document.getElementById("count").innerHTML = "Points remaining: " + count.toString();
 
 // Create list of trail names
-var trails = [
+let trails = [
   'Visceral',
   'Rastaman',
   'Florence',
@@ -17,7 +17,7 @@ var trails = [
 
 // Randomize order of list and select first item (after a correct guess move to the next item)
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -35,18 +35,18 @@ function shuffle(array) {
   return array;
 }
 
-var trail_rand = shuffle(trails)
+let trail_rand = shuffle(trails)
 
 // Create map and grouplayers and Basemaps
 // Create Map
 
-var map = L.map('mapid')//.setView([44, -72.5], 8);
-//var map = L.map('mapid');
+let map = L.map('mapid')//.setView([44, -72.5], 8);
+//let map = L.map('mapid');
 
 // Basemaps
-var Base = L.tileLayer('').addTo(map);
+let Base = L.tileLayer('').addTo(map);
 
-var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
+let Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   subdomains: 'abcd',
   minZoom: 0,
@@ -54,7 +54,7 @@ var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/
   ext: 'png'
 });
 
-var Stamen_TonerBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+let Stamen_TonerBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	subdomains: 'abcd',
 	minZoom: 0,
@@ -62,45 +62,33 @@ var Stamen_TonerBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.
 	ext: 'png'
 });
 
-var Thunderforest_Landscape = L.tileLayer('https://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey={apikey}', {
+let Thunderforest_Landscape = L.tileLayer('https://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey={apikey}', {
   attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   apikey: 'eb1937f239cf4794a8edeb744d50d083',
   maxZoom: 22
 });
 
 
-var baselayer = {
+let baselayer = {
   'No Basemap': Base,
-  'Stamen Basemap': Stamen_TonerBackground,
+  'Minimal Basemap': Stamen_TonerBackground,
   'Outdoors Basemap': Thunderforest_Landscape
 };
 
 // create an operational layer that is empty for now
-var trailGroup = new L.featureGroup().addTo(map);
+let trailGroup = new L.featureGroup().addTo(map);
 
 // Read in geoJson from file and add to layerGroup
-var lineStyle = {
+let lineStyle = {
   "color": "#ff7800",
   "weight": 2,
   "opacity": 0.65
 };
 
-//var trail = new L.GeoJSON.AJAX("data/Visceral.geojson", {
+//let trail = new L.GeoJSON.AJAX("data/Visceral.geojson", {
 //  style : lineStyle
 //});
 
-//trail.on('data:loaded', function() {
-//    map.fitBounds(steeple.getBounds())
-//  });
-
-// Use omnivore for displaying gpx files
-// var trail = omnivore.gpx('data/' + current_trail + '.gpx')
-//     .on('ready', function() {
-//         style : lineStyle;   //not sure this is the right place for lineStyle
-//         map.fitBounds(trail.getBounds()) //ideally there would be a bit more padding I think
-//     })
-//
-// trail.addTo(trailGroup);
 
 // Create layerControl for layerGroups
 let layerControl = {
@@ -113,7 +101,6 @@ L.control.layers(baselayer, layerControl).addTo(map)
 // Update counter to reflect the basemap toggles
 
 map.on('baselayerchange', function(layer, name) {
-  count--;
 
   // Alert for running out of points
   if(count==0){
@@ -133,10 +120,15 @@ function NoBase(){
 
 function StamenBase(){
   $('.leaflet-control-layers-selector')[1].click()
+  count = count - 1
+  document.getElementById("count").innerHTML = "Points remaining: " + count.toString();
+
 }
 
 function OutdoorBase(){
   $('.leaflet-control-layers-selector')[2].click()
+  count = count - 3
+  document.getElementById("count").innerHTML = "Points remaining: " + count.toString();
 }
 
 // Need a function that does the following upon page load
@@ -146,9 +138,9 @@ function OutdoorBase(){
 // Sets the basemap to no basemap
 // Adds the track of the first/next trail to the map and zooms to
 
-var trail_number = 0
-var trail_array_len = trail_rand.length
-var current_trail_global = ''
+let trail_number = 0
+let trail_array_len = trail_rand.length
+let current_trail_global = ''
 
 // Run loadNextTrail upon page load
 document.addEventListener("DOMContentLoaded", function() {
@@ -156,52 +148,63 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function loadNextTrail(){ //need some if trailnumber<= length else print game done
-  // Get the next trail in the random order of trail names
-  var current_trail = trail_rand.slice(trail_number, trail_number + 1);
-  window.current_trail_global = current_trail[0]
-  console.log(current_trail_global)
-  // For now display the name of the current trail
-  // Build the labels for the buttons, starting with the other four
-  var remaining_trail_options = trail_rand.filter(function(value, index, arr){
-      return value != current_trail;
-  }).slice(0,4);
-  trail_options = shuffle(current_trail.concat(remaining_trail_options));
 
-  // For each loop on an array to build the buttons text and restore color
-  const button_ids = ["option1", "option2", "option3", "option4", "option5"]
+  if (trail_number >= trail_array_len){
+    alert('End of list of trails')
+    console.log('game over')
+  } else {
+    // Get the next trail in the random order of trail names
+    let current_trail = trail_rand.slice(trail_number, trail_number + 1);
+    console.log(current_trail[0])
+    // For now display the name of the current trail
+    // Build the labels for the buttons, starting with the other four
+    let remaining_trail_options = trail_rand.filter(function(value, index, arr){
+        return value != current_trail;
+    }).slice(0,4);
+    trail_options = shuffle(current_trail.concat(remaining_trail_options));
 
-  button_ids.forEach((item, i) => {
-    document.getElementById(item).innerHTML = trail_options[i];
-    document.getElementById(item).style.backgroundColor = "#4CAF50"
-  });
-  // Set button backgound color back to green
+    // For each loop on an array to build the buttons text and restore color
+    const button_ids = ["option1", "option2", "option3", "option4", "option5"]
 
+    button_ids.forEach((item, i) => {
+      document.getElementById(item).innerHTML = trail_options[i];
+      document.getElementById(item).style.backgroundColor = "#4CAF50"
+    });
 
-  // Load the current trail onto the map
-  var trail = omnivore.gpx('data/' + current_trail + '.gpx')
-      .on('ready', function() {
-          style : lineStyle;   //not sure this is the right place for lineStyle
-          map.fitBounds(trail.getBounds(), {padding: [15, 15]}) //ideally there would be a bit more padding I think
-      })
+    // Load the current trail onto the map
+    let trail = omnivore.gpx('data/' + current_trail + '.gpx')
+        .on('ready', function() {
+            style : lineStyle;   //not sure this is the right place for lineStyle
+            map.fitBounds(trail.getBounds(), {padding: [15, 15]}) //ideally there would be a bit more padding I think
+        })
 
-  trail.addTo(trailGroup);
-  // Reset Basemap
-  NoBase()
+    // add id to trail layer for easy removal later
 
-  // Increase trail number for next time function is run
-  trail_number = trail_number + 1
+    trail.addTo(trailGroup);
+    // Reset Basemap
+    NoBase()
 
-  if (trail_number > trail_array_len){
-    return alert('End of list of trails')
+    // Increase trail number for next time function is run
+    trail_number = trail_number + 1
+
+    return map_load = {
+      current_trail: current_trail[0],
+      trail_layer_id : trail._leaflet_id
+    }
   }
 };
 
-//console.log(current_trail)
 
 function trailbuttons_click(button) {
-    if(button.innerHTML == current_trail_global){
+    if(button.innerHTML == map_load.current_trail){
 
-      loadNextTrail()
+      // Flash the correct button a different shade of green
+      button.style.backgroundColor = "#2fd609";
+
+      // Remove
+      trailGroup.removeLayer(map_load.trail_layer_id);
+      // Load next trail
+      setTimeout(loadNextTrail(), 200000);
 
     } else {
       // Decrease count
