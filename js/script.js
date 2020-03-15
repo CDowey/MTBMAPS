@@ -204,7 +204,6 @@ function trailbuttons_click(button) {
       loadNextTrail()
 
     } else {
-      document.getElementById("result").innerHTML = 'Incorrect'
       // Decrease count
       count--;
 
