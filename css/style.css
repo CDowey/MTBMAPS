@@ -26,12 +26,8 @@ body {
 #options {
   margin: auto;
   align-content: center;
-  float : left;
 }
 
-#currentTrail {
-  clear:left;
-}
 
 .leaflet-container {
   background-color: #fff;
@@ -39,7 +35,7 @@ body {
 }
 
 .button {
-  background-color: #4CAF50;
+  background-color: black;
   border: none;
   color: white;
   padding: 15px 32px;
